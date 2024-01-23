@@ -11,7 +11,7 @@ function App() {
     matrix: [null, null, null, null, null, null, null, null, null],
     win: false,
     button: "hidden",
-    cellColorArr: [...Array(9).fill({'fontColor': 'white', 'text':'L'})]
+    cellColorArr: [...Array(9).fill({ 'fontColor': 'white', 'text': 'L' })]
   });
 
   const defaultMatrix = [null, null, null, null, null, null, null, null, null];
@@ -20,14 +20,14 @@ function App() {
   const [win, setWin] = useState(false);
   const [button, setButton] = useState("hidden");
   const cellRepeat = 9;
-  const defaultCellValueArr = [...Array(cellRepeat).fill({'fontColor': 'white', 'text':'L'})]
+  const defaultCellValueArr = [...Array(cellRepeat).fill({ 'fontColor': 'white', 'text': 'L' })]
   const [cellColorArr, setColor] = useState(defaultCellValueArr);
   const grid = useRef();
 
   // LOGIC
   const resetGame = (e) => {
     setButton('none');
-    setState((prev)=>{return {...prev, player:'PLayer 1'}});
+    setState((prev) => { return { ...prev, player: 'PLayer 1' } });
     setMatrix(defaultMatrix);
     setWin(false);
     setColor(defaultCellValueArr);
@@ -75,19 +75,15 @@ function App() {
     let tempColorArr = cellColorArr;
     let tempMatrix = matrix;
     if (state.player === "Player 1") {
-      tempColorArr[index] = {'fontColor': 'black', 'text':'X'};
+      tempColorArr[index] = { 'fontColor': 'black', 'text': 'X' };
       tempMatrix[index] = 'X';
-      setState((prev)=>{return {...prev, player:'Player 2'}});
-      if (checkWin("X") === true) {
-        setWin("Player 1 WINS!");
-      }
+      setState((prev) => { return { ...prev, player: 'Player 2' } });
+      checkWin("X");
     } else {
-      tempColorArr[index] = {'fontColor': 'black', 'text':'O'};
+      tempColorArr[index] = { 'fontColor': 'black', 'text': 'O' };
       tempMatrix[index] = 'O';
-      setState((prev)=>{return {...prev, player:'Player 1'}});
-      if (checkWin("O") === true) {
-        setWin("Player 2 WINS!");
-      }
+      setState((prev) => { return { ...prev, player: 'Player 1' } });
+      checkWin("O");
     }
     setColor(tempColorArr);
     setMatrix(tempMatrix);
@@ -106,7 +102,7 @@ function App() {
           <Cell key={i} clickHandler={clickHandler} color={object.fontColor} index={i} text={object.text}></Cell>
         ))}
       </div>
-      <div className="buttonContainer" style={{'display': button}}>
+      <div className="buttonContainer" style={{ 'display': button }}>
         <button
           onClick={resetGame}
           className="resetButton"
