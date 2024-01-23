@@ -6,13 +6,14 @@ import Header from "./components/Header";
 function App() {
 
   //STATE
-  const [state, setState] = useState({
+  const startState = {
     player: "Player 1",
     matrix: [null, null, null, null, null, null, null, null, null],
     win: false,
     button: "hidden",
     cellColorArr: [...Array(9).fill({ 'fontColor': 'white', 'text': 'L' })]
-  });
+  }
+  const [state, setState] = useState(startState);
 
   const defaultMatrix = [null, null, null, null, null, null, null, null, null];
   // const [state.player, setPlayer] = useState("Player 1");
@@ -27,7 +28,7 @@ function App() {
   // LOGIC
   const resetGame = (e) => {
     setButton('none');
-    setState((prev) => { return { ...prev, player: 'PLayer 1' } });
+    setState(startState);
     setMatrix(defaultMatrix);
     setWin(false);
     setColor(defaultCellValueArr);
