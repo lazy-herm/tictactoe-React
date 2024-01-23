@@ -8,7 +8,7 @@ function App() {
   //STATE
   const startState = {
     player: "Player 1",
-    matrix: [null, null, null, null, null, null, null, null, null],
+    matrix: Array(9).fill(null),
     win: false,
     button: "hidden",
     cellColorArr: [...Array(9).fill({ 'fontColor': 'white', 'text': 'L' })]
