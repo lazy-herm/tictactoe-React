@@ -14,7 +14,7 @@ function App() {
     cellColorArr: [...Array(9).fill({ 'fontColor': 'white', 'text': 'L' })]
   }
   const [state, setState] = useState(startState);
-  const [button, setButton] = useState("hidden");
+  // const [state.button, setButton] = useState("hidden");
   const cellRepeat = 9;
   const defaultCellValueArr = [...Array(cellRepeat).fill({ 'fontColor': 'white', 'text': 'L' })]
   const [cellColorArr, setColor] = useState(defaultCellValueArr);
@@ -22,8 +22,7 @@ function App() {
 
   // LOGIC
   const resetGame = (e) => {
-    setButton('none');
-    setState(startState);
+    setState({...startState});
     setColor(defaultCellValueArr);
   };
   function checkWin(letter) {
@@ -58,7 +57,8 @@ function App() {
       }
     });
     if (match === true) {
-      setButton("flex");
+      // setButton("flex");
+      setState((prev) => { return { ...prev, button: "show" } });
     }
     return match;
   }
@@ -96,7 +96,7 @@ function App() {
           <Cell key={i} clickHandler={clickHandler} color={object.fontColor} index={i} text={object.text}></Cell>
         ))}
       </div>
-      <div className="buttonContainer" style={{ 'display': button }}>
+      <div className={`buttonContainer ${state.button}`}>
         <button
           onClick={resetGame}
           className="resetButton"

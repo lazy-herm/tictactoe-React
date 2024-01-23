@@ -35,3 +35,11 @@
   font-size: 10vw;
   background-color: rgb(29, 68, 175, 1);
 }
+
+.hidden{
+  display: none;
+}
+
+.show{
+  display: flex;
+}
