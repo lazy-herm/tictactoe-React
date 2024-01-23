@@ -14,8 +14,6 @@ function App() {
     cellColorArr: [...Array(9).fill({ 'fontColor': 'white', 'text': 'L' })]
   }
   const [state, setState] = useState(startState);
-
-  const defaultMatrix = [null, null, null, null, null, null, null, null, null];
   const [button, setButton] = useState("hidden");
   const cellRepeat = 9;
   const defaultCellValueArr = [...Array(cellRepeat).fill({ 'fontColor': 'white', 'text': 'L' })]
