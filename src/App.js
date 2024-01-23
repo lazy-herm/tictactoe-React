@@ -1,8 +1,11 @@
 import { useState, useRef } from "react";
 import "./App.css";
 import Cell from "./components/Cell";
+import Header from "./components/Header";
 
 function App() {
+
+  //STATE
   const defaultMatrix = [null, null, null, null, null, null, null, null, null];
   const [player, setPlayer] = useState("Player 1");
   const [matrix, setMatrix] = useState(defaultMatrix);
@@ -12,6 +15,8 @@ function App() {
   const defaultCellValueArr = [...Array(cellRepeat).fill({'fontColor': 'white', 'text':'L'})]
   const [cellColorArr, setColor] = useState(defaultCellValueArr);
   const grid = useRef();
+
+  // LOGIC
   const resetGame = (e) => {
     setButton('none');
     setPlayer('Player 1');
@@ -55,6 +60,8 @@ function App() {
     }
     return match;
   }
+
+  // FUNCTIONALITY
   const clickHandler = (e) => {
     let index = e.target.attributes.index.value;
     let tempColorArr = cellColorArr;
@@ -80,9 +87,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Tic Tac Toe</h1>
+      {/* header */}
+      <Header />
+      {/* player */}
       <h2 className="whichPlayer">{player}</h2>
+      {/* TODO: Instructions */}
+      {/* win/lose module  */}
       <p className="results">{win}</p>
+      {/* game container */}
       <div className="grid-container" ref={grid}>
         {cellColorArr.map((object, i) => (
           <Cell key={i} clickHandler={clickHandler} color={object.fontColor} index={i} text={object.text}></Cell>
