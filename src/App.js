@@ -17,7 +17,7 @@ function App() {
 
   const defaultMatrix = [null, null, null, null, null, null, null, null, null];
   // const [state.player, setPlayer] = useState("Player 1");
-  const [matrix, setMatrix] = useState(defaultMatrix);
+  // const [st, setMatrix] = useState(defaultMatrix);
   const [win, setWin] = useState(false);
   const [button, setButton] = useState("hidden");
   const cellRepeat = 9;
@@ -29,7 +29,6 @@ function App() {
   const resetGame = (e) => {
     setButton('none');
     setState(startState);
-    setMatrix(defaultMatrix);
     setWin(false);
     setColor(defaultCellValueArr);
   };
@@ -47,7 +46,7 @@ function App() {
     let match = false;
     winCombinations.every((arr) => {
       arr.every((index) => {
-        if (matrix[index] === letter) {
+        if (state.matrix[index] === letter) {
           match = true;
         } else {
           match = false;
@@ -74,7 +73,7 @@ function App() {
   const clickHandler = (e) => {
     let index = e.target.attributes.index.value;
     let tempColorArr = cellColorArr;
-    let tempMatrix = matrix;
+    let tempMatrix = state.matrix;
     if (state.player === "Player 1") {
       tempColorArr[index] = { 'fontColor': 'black', 'text': 'X' };
       tempMatrix[index] = 'X';
@@ -86,8 +85,8 @@ function App() {
       setState((prev) => { return { ...prev, player: 'Player 1' } });
       checkWin("O");
     }
-    setColor(tempColorArr);
-    setMatrix(tempMatrix);
+    setState((prev) => { return { ...prev, matrix: tempMatrix } });
+    // setColor(tempColorArr);
   };
 
   return (
