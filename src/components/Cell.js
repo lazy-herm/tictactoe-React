@@ -4,7 +4,7 @@ const Cell = ({ player, ...props }) => {
 
   const cellClick = (e) => {
     const cellValue = e.target.innerText;
-    if (cellValue === "X" || cellValue === "O") {
+    if (cellValue === "X" | "O") {
       return;
     }
     console.log("cellClick", e.target.innerText);
