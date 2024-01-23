@@ -6,8 +6,16 @@ import Header from "./components/Header";
 function App() {
 
   //STATE
+  const [state, setState] = useState({
+    player: "Player 1",
+    matrix: [null, null, null, null, null, null, null, null, null],
+    win: false,
+    button: "hidden",
+    cellColorArr: [...Array(9).fill({'fontColor': 'white', 'text':'L'})]
+  });
+
   const defaultMatrix = [null, null, null, null, null, null, null, null, null];
-  const [player, setPlayer] = useState("Player 1");
+  // const [state.player, setPlayer] = useState("Player 1");
   const [matrix, setMatrix] = useState(defaultMatrix);
   const [win, setWin] = useState(false);
   const [button, setButton] = useState("hidden");
@@ -19,7 +27,7 @@ function App() {
   // LOGIC
   const resetGame = (e) => {
     setButton('none');
-    setPlayer('Player 1');
+    setState((prev)=>{return {...prev, player:'PLayer 1'}});
     setMatrix(defaultMatrix);
     setWin(false);
     setColor(defaultCellValueArr);
@@ -66,17 +74,17 @@ function App() {
     let index = e.target.attributes.index.value;
     let tempColorArr = cellColorArr;
     let tempMatrix = matrix;
-    if (player === "Player 1") {
+    if (state.player === "Player 1") {
       tempColorArr[index] = {'fontColor': 'black', 'text':'X'};
       tempMatrix[index] = 'X';
-      setPlayer("Player 2");
+      setState((prev)=>{return {...prev, player:'Player 2'}});
       if (checkWin("X") === true) {
         setWin("Player 1 WINS!");
       }
     } else {
       tempColorArr[index] = {'fontColor': 'black', 'text':'O'};
       tempMatrix[index] = 'O';
-      setPlayer("Player 1");
+      setState((prev)=>{return {...prev, player:'Player 1'}});
       if (checkWin("O") === true) {
         setWin("Player 2 WINS!");
       }
@@ -90,10 +98,8 @@ function App() {
       {/* header */}
       <Header />
       {/* player */}
-      <h2 className="whichPlayer">{player}</h2>
+      <h2 className="whichPlayer">{state.player}</h2>
       {/* TODO: Instructions */}
-      {/* win/lose module  */}
-      <p className="results">{win}</p>
       {/* game container */}
       <div className="grid-container" ref={grid}>
         {cellColorArr.map((object, i) => (
