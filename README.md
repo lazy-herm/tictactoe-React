@@ -1,3 +1,3 @@
 TICTACTOE
 
-Simple TICTACTOE game made with React for my seoftware development portfolio - www.vautheny.com.
+Simple TICTACTOE game made with React for my software development portfolio - www.vautheny.com.
