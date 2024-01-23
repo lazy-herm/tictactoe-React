@@ -87,7 +87,7 @@ function App() {
       {/* game container */}
       <div className="grid-container" ref={grid}>
         {state.cellColorArr.map((object, i) => (
-          <Cell key={i} clickHandler={clickHandler} color={object.fontColor} index={i} text={object.text}></Cell>
+          <Cell key={i} clickHandler={clickHandler} color={object.fontColor} index={i} text={object.text} state={state} setState={setState}></Cell>
         ))}
       </div>
       <div className={`buttonContainer ${state.button}`}>
