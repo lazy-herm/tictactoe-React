@@ -17,9 +17,10 @@ function App() {
   const grid = useRef();
 
   // LOGIC
-  const resetGame = (e) => {
+  const resetGame = () => {
     setState({...startState});
   };
+
   function checkWin(letter) {
     const winCombinations = [
       [0, 1, 2],
@@ -52,7 +53,6 @@ function App() {
       }
     });
     if (match === true) {
-      // setButton("flex");
       setState((prev) => { return { ...prev, button: "show" } });
     }
     return match;
