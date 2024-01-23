@@ -16,9 +16,6 @@ function App() {
   const [state, setState] = useState(startState);
 
   const defaultMatrix = [null, null, null, null, null, null, null, null, null];
-  // const [state.player, setPlayer] = useState("Player 1");
-  // const [st, setMatrix] = useState(defaultMatrix);
-  const [win, setWin] = useState(false);
   const [button, setButton] = useState("hidden");
   const cellRepeat = 9;
   const defaultCellValueArr = [...Array(cellRepeat).fill({ 'fontColor': 'white', 'text': 'L' })]
@@ -29,7 +26,6 @@ function App() {
   const resetGame = (e) => {
     setButton('none');
     setState(startState);
-    setWin(false);
     setColor(defaultCellValueArr);
   };
   function checkWin(letter) {
@@ -86,7 +82,7 @@ function App() {
       checkWin("O");
     }
     setState((prev) => { return { ...prev, matrix: tempMatrix } });
-    // setColor(tempColorArr);
+    setColor(tempColorArr);
   };
 
   return (
