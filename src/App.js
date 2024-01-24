@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Cell from "./components/Cell";
 import Header from "./components/Header";
+import { checkWin } from "./components/logic/checkWin";
 
 function App() {
 
@@ -9,9 +10,12 @@ function App() {
   const startState = {
     player: "Player 1",
     symbol: "X",
+    player1Positions: [],
+    player2Positions: [],
     matrix: Array(9).fill(null),
     win: false,
     button: "hidden",
+
   }
   const [state, setState] = useState(startState);
   const grid = useRef();
@@ -21,60 +25,31 @@ function App() {
     setState({ ...startState });
   };
 
-  function checkWin(letter) {
-    const winCombinations = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    let match = false;
-    winCombinations.every((arr) => {
-      arr.every((index) => {
-        if (state.matrix[index] === letter) {
-          match = true;
-        } else {
-          match = false;
-        }
-        if (match === false) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-      if (match === true) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-    if (match === true) {
-      setState((prev) => { return { ...prev, button: "show" } });
-    }
-    return match;
-  }
-
-  // useEffect(() => {
-  //   console.log('state change', state.matrix);
-  // }, [state.matrix]);
+  useEffect(() => {
+    console.log('state change', state.matrix);
+  }, [state.matrix]);
 
 
   // FUNCTIONALITY
-  const clickHandler = (index, event) => {
-    // update matrix // check win // changel player // change symbol
+  const clickHandler = (index) => {
+    // update matrix
     let newMatrix = state.matrix;
     newMatrix[index] = state.symbol;
     setState((prev) => { return { ...prev, matrix: [...newMatrix] } });
-    // check win
-    if (checkWin(state.symbol)) {
-      return;
+    // Update player postions
+    if (state.player === 'Player 1') {
+      let positions = state.player1Positions;
+      positions.push(index);
+      setState((prev)=>{return {...prev, player1Positions : positions}});
+      checkWin(positions, setState)
+      setState((prev) => { return { ...prev, player: 'Player 2', symbol: 'O' } })
+    } else {
+      const positions = state.player2Positions;
+      positions.push(index);
+      setState((prev)=>{return {...prev, player2Positions : positions}});
+      checkWin(positions, setState)
+      setState((prev) => { return { ...prev, player: 'Player 1', symbol: 'X' } })
     }
-    // change player and symbol
-    state.player === "Player 1" ? setState((prev) => { return { ...prev, player: 'Player 2', symbol: 'O' } }) : setState((prev) => { return { ...prev, player: 'Player 1', symbol: 'X' } });
   };
 
   return (
