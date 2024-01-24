@@ -13,7 +13,6 @@ function App() {
     player1Positions: [],
     player2Positions: [],
     matrix: Array(9).fill(null),
-    win: false,
     button: "hidden",
 
   }
