@@ -9,7 +9,7 @@ const Cell = ({ index, children, clickHandler }) => {
       return;
     }
     // update matrix // check win // changel player // change symbol
-    clickHandler(event.target.attributes.index.value, event);
+    clickHandler(event.target.attributes.index.value);
   };
 
   return (
