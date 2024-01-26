@@ -10,8 +10,14 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 20vh 20vh 20vh;
-  grid-template-rows: 20vh 20vh 20vh;
+  grid-template-columns: 25vh 25vh 25vh;
+  grid-template-rows: 25vh 25vh 25vh;
   margin: auto;
+}
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 30vw 30vw 30vw;
+    grid-template-rows: 30vw 30vw 30vw;
+  }
 }
 
