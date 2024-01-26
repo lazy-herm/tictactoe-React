@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import Cell from "./components/Cell";
-import Header from "./components/Header";
-import { checkWin } from "./logic/checkWin";
-import ResetBtn from "./components/ResetBtn";
+import Cell from "components/Cell/Cell";
+import Header from "components/Header";
+import { checkWin } from "logic/checkWin";
+import ResetBtn from "components/ResetBtn";
 
 function App() {
 
