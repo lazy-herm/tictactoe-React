@@ -2,7 +2,7 @@
   text-align: center;
   width: auto;
   border: solid blue 1px;
-  height: 99.7vh;
+  height: fit-content;
   justify-content: center;
   display: flex;
   flex-direction: column;
