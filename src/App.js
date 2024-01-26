@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import Cell from "components/Cell/Cell";
-import Header from "components/Header";
 import { checkWin } from "logic/checkWin";
 import ResetBtn from "components/ResetBtn/ResetBtn";
 import Instructions from "components/Instructions";
