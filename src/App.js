@@ -4,6 +4,7 @@ import Cell from "components/Cell/Cell";
 import Header from "components/Header";
 import { checkWin } from "logic/checkWin";
 import ResetBtn from "components/ResetBtn/ResetBtn";
+import Instructions from "components/Instructions";
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
     symbol: "X",
     positions: { "1": [], "2": [] },
     buttonShow: false,
-  }
+  } 
   const [state, setState] = useState(startState);
 
   // RESET GAME
@@ -41,7 +42,7 @@ function App() {
     <div className="App">
       <Header />
       <h2 className="whichPlayer">{'Player ' + state.player}</h2>
-      {/* TODO: Instructions */}
+      <Instructions />
       <div className="grid-container" id='grid'>
         {Array(9).fill().map((_, index) => (
           <Cell key={index} clickHandler={clickHandler} index={index} symbol={state.symbol} />
