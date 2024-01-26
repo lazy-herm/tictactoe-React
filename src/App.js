@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import Cell from "./components/Cell";
 import Header from "./components/Header";
-import { checkWin } from "./components/logic/checkWin";
+import { checkWin } from "./logic/checkWin";
 
 function App() {
 

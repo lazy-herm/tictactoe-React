@@ -7,6 +7,7 @@ const Cell = ({ index, symbol, clickHandler}) => {
     if (cellValue === "X" | "O") {
       return;
     }
+    // change cell value
     event.target.innerText = symbol;
     // update matrix // check win // changel player // change symbol
     clickHandler(Number(event.target.attributes.index.value));
