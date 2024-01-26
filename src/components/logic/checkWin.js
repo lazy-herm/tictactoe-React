@@ -11,11 +11,13 @@ export const checkWin = (positions, setState) => {
     ];
 
     // For each winning combination check number of matching indeces with the players postions.
-    winCombinations.forEach((combination) => {
+    winCombinations.forEach((winingCombo) => {
         let occurance = 0;
         // Count number of matching indeces.
-        combination.forEach((index) => {
-            index in positions && occurance++
+        winingCombo.forEach((winingPosition) => {
+            if (positions.includes(winingPosition)) {
+                occurance++;
+            }
         });
         // If 3 matching indeces then player has won.
         if (occurance === 3) {
