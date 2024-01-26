@@ -3,6 +3,7 @@ import "./App.css";
 import Cell from "./components/Cell";
 import Header from "./components/Header";
 import { checkWin } from "./logic/checkWin";
+import ResetBtn from "./components/ResetBtn";
 
 function App() {
 
@@ -11,7 +12,6 @@ function App() {
     player: "1",
     symbol: "X",
     positions: { "1": [], "2": [] },
-    button: "hidden",
   }
   const [state, setState] = useState(startState);
 
@@ -38,25 +38,15 @@ function App() {
 
   return (
     <div className="App">
-      {/* header */}
       <Header />
-      {/* player */}
       <h2 className="whichPlayer">{'Player ' + state.player}</h2>
       {/* TODO: Instructions */}
-      {/* game container */}
       <div className="grid-container">
         {Array(9).fill().map((_, index) => (
           <Cell key={index} clickHandler={clickHandler} index={index} symbol={state.symbol} />
         ))}
       </div>
-      <div className={`buttonContainer ${state.button}`}>
-        <button
-          onClick={resetGame}
-          className="resetButton"
-        >
-          Reset Game
-        </button>
-      </div>
+      <ResetBtn resetGame={resetGame} />
     </div>
   );
 }
