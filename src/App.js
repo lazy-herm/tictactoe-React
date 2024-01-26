@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <h1 className="title">Tic Tac Toe</h1>
       <h2 className="whichPlayer">{'Player ' + state.player}</h2>
       <Instructions />
       <div className="grid-container" id='grid'>
