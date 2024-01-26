@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Cell from "components/Cell/Cell";
 import Header from "components/Header";
 import { checkWin } from "logic/checkWin";
-import ResetBtn from "components/ResetBtn";
+import ResetBtn from "components/ResetBtn/ResetBtn";
 
 function App() {
 
@@ -12,13 +12,20 @@ function App() {
     player: "1",
     symbol: "X",
     positions: { "1": [], "2": [] },
+    buttonShow: false,
   }
   const [state, setState] = useState(startState);
+  useEffect(() => {
+    console.log('state changed', state);
+  }
+    , [state]);
 
   // RESET GAME
   const resetGame = () => {
     setState({ ...startState });
-    Array.from(document.getElementsByClassName("grid-item")).forEach((element) => {
+    // Reset grid
+    
+    Array.from(document.getElementById("grid").children).forEach((element) => {
       element.innerText = "";
     });
   };
@@ -41,12 +48,12 @@ function App() {
       <Header />
       <h2 className="whichPlayer">{'Player ' + state.player}</h2>
       {/* TODO: Instructions */}
-      <div className="grid-container">
+      <div className="grid-container" id='grid'>
         {Array(9).fill().map((_, index) => (
           <Cell key={index} clickHandler={clickHandler} index={index} symbol={state.symbol} />
         ))}
       </div>
-      <ResetBtn resetGame={resetGame} />
+      <ResetBtn resetGame={resetGame} buttonShow={state.buttonShow} />
     </div>
   );
 }

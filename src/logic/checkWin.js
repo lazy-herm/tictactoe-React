@@ -21,7 +21,7 @@ export const checkWin = (positions, setState) => {
         });
         // If 3 matching indeces then player has won.
         if (occurance === 3) {
-            setState((prev) => { return { ...prev, button: "show" } });
+            setState((prev) => { return { ...prev, buttonShow: true } });
             return;
         }
     })
