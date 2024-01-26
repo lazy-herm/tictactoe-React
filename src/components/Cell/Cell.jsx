@@ -1,4 +1,4 @@
-
+import styles from "./Cell.module.css";
 
 const Cell = ({ index, symbol, clickHandler}) => {
   const cellClick = (event) => {
@@ -15,7 +15,7 @@ const Cell = ({ index, symbol, clickHandler}) => {
 
   return (
     <div
-      className="grid-item"
+      className={styles.grid_item}
       onClick={cellClick}
       index={index}
     />
