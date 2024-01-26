@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Cell from "./components/Cell";
 import Header from "./components/Header";
@@ -12,29 +12,23 @@ function App() {
     symbol: "X",
     player1Positions: [],
     player2Positions: [],
-    matrix: Array(9).fill(null),
     button: "hidden",
 
   }
   const [state, setState] = useState(startState);
-  const grid = useRef();
 
   // LOGIC
   const resetGame = () => {
     setState({ ...startState });
+    Array.from(document.getElementsByClassName("grid-item")).forEach((element) => {
+      element.innerText = "";
+    });
   };
-
-  useEffect(() => {
-    console.log('state change', state.matrix);
-  }, [state.matrix]);
+  
 
 
   // FUNCTIONALITY
   const clickHandler = (index) => {
-    // update matrix
-    let newMatrix = state.matrix;
-    newMatrix[index] = state.symbol;
-    setState((prev) => { return { ...prev, matrix: [...newMatrix] } });
     // Update player postions
     if (state.player === 'Player 1') {
       let positions = state.player1Positions;
@@ -59,9 +53,9 @@ function App() {
       <h2 className="whichPlayer">{state.player}</h2>
       {/* TODO: Instructions */}
       {/* game container */}
-      <div className="grid-container" ref={grid}>
-        {state.matrix.map((value, index) => (
-          <Cell key={index} clickHandler={clickHandler} index={index}>{value}</Cell>
+      <div className="grid-container">
+        {Array(9).fill().map((_,index) => (
+          <Cell key={index} clickHandler={clickHandler} index={index} symbol={state.symbol} />
         ))}
       </div>
       <div className={`buttonContainer ${state.button}`}>
