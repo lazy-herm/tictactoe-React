@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Cell from "components/Cell/Cell";
 import Header from "components/Header";
@@ -15,16 +15,10 @@ function App() {
     buttonShow: false,
   }
   const [state, setState] = useState(startState);
-  useEffect(() => {
-    console.log('state changed', state);
-  }
-    , [state]);
 
   // RESET GAME
   const resetGame = () => {
     setState({ ...startState });
-    // Reset grid
-    
     Array.from(document.getElementById("grid").children).forEach((element) => {
       element.innerText = "";
     });
